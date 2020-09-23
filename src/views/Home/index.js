@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import loadingImg from '../../assets/loading.jpg';
 import loginFailed from '../../assets/loginFailed.jpg';
+import { connect } from 'react-redux';
 
 class Home extends Component {
   render() {
@@ -27,9 +28,18 @@ class Home extends Component {
             <strong>初始</strong>未登录状态。
           </li>
         </ol>
+        {this.props.userInfo.loading && (
+          <div className="loading">
+            <p>Loading...</p>
+          </div>
+        )}
       </div>
     );
   }
 }
 
-export default Home;
+const mapStateToProps = ({ userInfo }) => ({
+  userInfo
+});
+
+export default connect(mapStateToProps)(Home);

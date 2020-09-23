@@ -11,4 +11,17 @@ export const clearUserInfo = () => {
   return {
     type: 'CLEAR_USER_INFO'
   };
-}
+};
+
+const loading = () => {
+  return {
+    type: 'LOADING'
+  };
+};
+
+export const signIn = () => dispatch => {
+  dispatch(loading());
+  return fetch('https://my-json-server.typicode.com/kevindongzg/demo/login')
+    .then(res => res.json())
+    .then(data => dispatch(setUserInfo({ logged: true, ...data })));
+};
